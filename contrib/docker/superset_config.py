@@ -15,7 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 import os
-
+from flask_appbuilder.security.manager import AUTH_OID, AUTH_REMOTE_USER, AUTH_DB, AUTH_LDAP, AUTH_OAUTH
 
 def get_env_variable(var_name, default=None):
     """Get the environment variable or raise exception."""
@@ -45,6 +45,45 @@ SQLALCHEMY_DATABASE_URI = 'postgresql://%s:%s@%s:%s/%s' % (POSTGRES_USER,
 
 REDIS_HOST = get_env_variable('REDIS_HOST')
 REDIS_PORT = get_env_variable('REDIS_PORT')
+
+# ----------------------------------------------------
+# AUTHENTICATION CONFIG
+# ----------------------------------------------------
+# The authentication type
+# AUTH_OID : Is for OpenID
+# AUTH_DB : Is for database (username/password()
+# AUTH_LDAP : Is for LDAP
+# AUTH_REMOTE_USER : Is for using REMOTE_USER from web server
+#AUTH_TYPE = AUTH_DB
+
+# Uncomment to setup Full admin role name
+AUTH_ROLE_ADMIN = 'Admin'
+
+# Uncomment to setup Public role name, no authentication needed
+# AUTH_ROLE_PUBLIC = 'Public'
+
+# Will allow user self registration
+AUTH_USER_REGISTRATION = False
+
+# The default user self registration role
+#AUTH_USER_REGISTRATION_ROLE = "Public"
+#AUTH_USER_REGISTRATION_ROLE = "Admin"
+
+#AUTH CONFIG LDAP AND DB AUTH cannot be used both at the same time
+# When using Local DB AUTH uncomment following parameter and comment "AUTH_LDAP"
+#AUTH_TYPE = AUTH_DB
+
+# When using LDAP Auth, setup the ldap server
+AUTH_TYPE = AUTH_LDAP
+AUTH_LDAP_SERVER = get_env_variable('LDAP_URI')
+AUTH_LDAP_SEARCH = get_env_variable('LDAP_BASE_DN')
+AUTH_LDAP_UID_FIELD = "uid"
+AUTH_LDAP_FIRSTNAME_FIELD = "givenName"
+AUTH_LDAP_LASTNAME_FIELD = "sn"
+AUTH_LDAP_EMAIL_FIELD = "mail"
+AUTH_LDAP_BIND_USER = get_env_variable('LDAP_USER')
+AUTH_LDAP_BIND_PASSWORD = get_env_variable('FREEIPA_ADMIN_PASS')
+AUTH_LDAP_ALLOW_SELF_SIGNED = True
 
 
 class CeleryConfig(object):

@@ -49,6 +49,10 @@ services:
       POSTGRES_PORT: 5432
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      LDAP_URI: ldap://10.0.254.201:389
+      LDAP_BASE_DN: cn=users,cn=accounts,dc=mgmt,dc=dev,dc=daf,dc=teamdigitale,dc=internal
+      LDAP_USER: uid=admin,cn=users,cn=accounts,dc=mgmt,dc=dev,dc=daf,dc=teamdigitale,dc=internal
+      FREEIPA_ADMIN_PASS: Hfp6NK%p!qC4%f62f7yQ
       # If using production, comment development volume below
       #SUPERSET_ENV: production
       SUPERSET_ENV: development
