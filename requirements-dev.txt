@@ -33,3 +33,4 @@ python-dotenv==0.10.1
 redis==2.10.6
 statsd==3.3.0
 tox==3.11.1
+Flask-OAuthlib==0.9.5

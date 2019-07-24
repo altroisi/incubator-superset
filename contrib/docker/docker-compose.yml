@@ -49,6 +49,8 @@ services:
       POSTGRES_PORT: 5432
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      AZURE_APPLICATION_ID: 8508be20-574b-4328-843f-6405bc73c6d7
+      AZURE_SECRET: 2Q+2e.ZlwbW4AT-sfkj8JdrpUEF/pHJi
       # If using production, comment development volume below
       #SUPERSET_ENV: production
       SUPERSET_ENV: development
