@@ -81,15 +81,18 @@ OAUTH_PROVIDERS = [
     'icon': 'fa-windows',
     'token_key': 'access_token',
     'remote_app': {
-      'base_url': 'https://login.microsoftonline.com/common/oauth2/v2.0/',
+#      'base_url': 'https://login.microsoftonline.com/common/oauth2/v2.0/',
+      'base_url': 'https://login.microsoftonline.com/' + os.environ.get("AZURE_TENANT_ID") + '/oauth2',
       'request_token_params': {
-#        'scope': 'User.read name preferred_username email profile'
-        'scope': 'openid'
-#        'resource': os.environ.get("AZURE_APPLICATION_ID")
+        'scope': 'User.read name preferred_username email profile upn',
+#        'scope': 'openid'
+        'resource': os.environ.get("AZURE_APPLICATION_ID")
       },
       'request_token_url': None,
-      'access_token_url': 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
-      'authorize_url': 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
+#      'access_token_url': 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
+      'access_token_url': 'https://login.microsoftonline.com/' + os.environ.get("AZURE_TENANT_ID") + '/oauth2/token',
+#      'authorize_url': 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
+      'authorize_url': 'https://login.microsoftonline.com/' + os.environ.get("AZURE_TENANT_ID") + '/oauth2/authorize',
       'consumer_key': os.environ.get("AZURE_APPLICATION_ID"),
       'consumer_secret': os.environ.get("AZURE_SECRET")
     }
